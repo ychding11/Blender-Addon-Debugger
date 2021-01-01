@@ -3,7 +3,8 @@ It is a Blender Addon which enables remote debugging from Visual Studio.
 [ᴘᴛᴠsᴅ](https://github.com/microsoft/ptvsd) is a python debugger. It supports remote python remote debugging.
 It use ptvsd API to start a debugger sever on blender side. After debugger server begins to listen, debugger client (in visual studio) can connect to it. Then
 Visual Studio enters debug mode.    As show in following picture.
-- ![attach](./screen/attach.png)
+
+ ![attach](./screen/attach.png)
 
 ## Setup
 - install the add-on into blender.
