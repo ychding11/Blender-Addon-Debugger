@@ -11,6 +11,27 @@ Visual Studio enters debug mode.    As show in following picture.
 - connect to debugger sever in blender. 
   - The detail settings can refer this [page](https://docs.microsoft.com/en-us/visualstudio/python/debugging-python-code-on-remote-linux-machines?view=vs-2019#attach-remotely-from-python-tools)
   
-  ## To do
-  - use [debugpy](https://github.com/microsoft/debugpy) replace ptvsd.
-    - For Visual Studio 2019 version 16.4 and earlier, the ptvsd library was used. The debugpy library replaced ptvsd 4 in Visual Studio 2019 version 16.5.
+    
+```
+global ptvsd 
+import ptvsd
+
+# can only be attached once, no way to detach (at least not that I understand?)
+try:
+    # ptvsd.enable_attach() to start the debug server. The default hostname is 0.0.0.0, and the default port is 5678;
+    ptvsd.enable_attach(("0.0.0.0", 5678), redirect_output=True)
+except:
+    print("Debug Server already running.")
+
+print("Debug Server is waitig on port 5678.")
+
+# ptvsd.wait_for_attach() function to block program execution until the debugger is attached.
+ptvsd.wait_for_attach();
+print("Client attached.")
+
+```
+
+## To do
+- use [debugpy](https://github.com/microsoft/debugpy) replace ptvsd.
+  - For Visual Studio 2019 version 16.4 and earlier, the ptvsd library was used. The debugpy library replaced ptvsd 4 in Visual Studio 2019 version 16.5.
+
