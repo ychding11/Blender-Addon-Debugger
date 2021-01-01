@@ -13,3 +13,4 @@ Visual Studio enters debug mode.    As show in following picture.
   
   ## To do
   - use [debugpy](https://github.com/microsoft/debugpy) replace ptvsd.
+    - For Visual Studio 2019 version 16.4 and earlier, the ptvsd library was used. The debugpy library replaced ptvsd 4 in Visual Studio 2019 version 16.5.
