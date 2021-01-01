@@ -112,7 +112,7 @@ def check_done(i, modal_limit, prefs):
 class DebuggerCheck(bpy.types.Operator):
    bl_idname = "debug.check_for_debugger"
    bl_label = "Debug: Check if debugger is attached"
-   bl_description = "Starts modal timer that checks if debugger attached until attached or until timeout"
+   bl_description = "Starts modal timer that checks if debugger attached until attached or timeout"
 
    _timer = None
    count = 0
@@ -163,6 +163,7 @@ class DebugServerStart(bpy.types.Operator):
 
       if not any(ptvsd_path in p for p in sys.path):
          sys.path.append(ptvsd_path)
+
 
       global ptvsd 
       import ptvsd
