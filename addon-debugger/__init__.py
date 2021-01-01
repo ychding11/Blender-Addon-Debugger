@@ -1,33 +1,14 @@
-'''
-Copyright (C) 2018 Alan North
-alannorth@gmail.com
-
-Created by Alan North
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
 
 bl_info = {
-   'name': 'Debugger for VS Code',
-   'author': 'Alan North',
-   'version': (1, 0, 1),
+   'name': 'Blender Addon Debugger',
+   'author': 'ychding',
+   'version': (0, 0, 1),
    'blender': (2, 80, 0), # supports 2.8+
-   "description": "Starts debugging server for VS Code.",
+   "description": "Starts debugging server through ptvsd.",
    'location': 'In search (Edit > Operator Search) type "Debug"',
    "warning": "",
-   "wiki_url": "https://github.com/AlansCodeLog/blender-debugger-for-vscode",
-   "tracker_url": "https://github.com/AlansCodeLog/blender-debugger-for-vscode/issues",
+   "wiki_url": "https://github.com/ychding11/Blender-Addon-Debugger",
+   "tracker_url": "https://github.com/ychding11/Blender-Addon-Debugger/issues",
    'category': 'Development',
 }
 
