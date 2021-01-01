@@ -11,7 +11,9 @@ Visual Studio enters debug mode.    As show in following picture.
 - connect to debugger sever in blender. 
   - The detail settings can refer this [page](https://docs.microsoft.com/en-us/visualstudio/python/debugging-python-code-on-remote-linux-machines?view=vs-2019#attach-remotely-from-python-tools)
   
-    
+## Use ptvsd to debug other python code
+- copy the following code and paste it at the begining of the code.
+
 ```
 global ptvsd 
 import ptvsd
@@ -28,7 +30,6 @@ print("Debug Server is waitig on port 5678.")
 # ptvsd.wait_for_attach() function to block program execution until the debugger is attached.
 ptvsd.wait_for_attach();
 print("Client attached.")
-
 ```
 
 ## To do
