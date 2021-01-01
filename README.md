@@ -12,6 +12,9 @@ Visual Studio enters debug mode.    As show in following picture.
 - install ptvsd by command `pip install ptvsd`
 - connect to debugger sever in blender. 
   - The detail settings can refer this [page](https://docs.microsoft.com/en-us/visualstudio/python/debugging-python-code-on-remote-linux-machines?view=vs-2019#attach-remotely-from-python-tools)
+- after debuging, detatch process
+
+  ![detach](./screen/detach.png)
   
 ## Use ptvsd to debug other python code
 - copy the following code and paste it at the begining of the code.
