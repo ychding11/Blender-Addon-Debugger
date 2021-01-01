@@ -111,7 +111,7 @@ def check_done(i, modal_limit, prefs):
 
 class DebuggerCheck(bpy.types.Operator):
    bl_idname = "debug.check_for_debugger"
-   bl_label = "Debug: Check if VS Code is Attached"
+   bl_label = "Debug: Check if debugger is attached"
    bl_description = "Starts modal timer that checks if debugger attached until attached or until timeout"
 
    _timer = None
