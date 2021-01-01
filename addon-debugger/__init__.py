@@ -4,7 +4,7 @@ bl_info = {
    'author': 'ychding',
    'version': (0, 0, 1),
    'blender': (2, 80, 0), # supports 2.8+
-   "description": "Starts debugging server through ptvsd.",
+   "description": "Starts debugging server through ptvsd. Then Visual Studio can attach to it and begins to debug.",
    'location': 'In search (Edit > Operator Search) type "Debug"',
    "warning": "",
    "wiki_url": "https://github.com/ychding11/Blender-Addon-Debugger",
@@ -26,6 +26,7 @@ def check_for_ptvsd():
       ["whereis", "python"],
       ["which", "python"],
    ]
+
    location = None
    for command in checks:
       try:
@@ -64,27 +65,28 @@ def check_for_ptvsd():
 class DebuggerPreferences(bpy.types.AddonPreferences):
    bl_idname = __name__
 
-   path: bpy.props.StringProperty(
+   path : bpy.props.StringProperty(
       name="Location of PTVSD",
       subtype="DIR_PATH",
       default=check_for_ptvsd()
    )
 
-   timeout: bpy.props.IntProperty(
+   timeout : bpy.props.IntProperty(
       name="Timeout",
       default=20
    )
 
-   port: bpy.props.IntProperty(
+   port : bpy.props.IntProperty(
       name="Port",
       min=0,
       max=65535,
       default=5678
    )
+
    def draw(self, context):
       layout = self.layout
       row_path = layout
-      row_path.label(text="The addon will try to auto-find the location to ptvsd, if no path is found, or you would like to use a different path, set it here.")
+      row_path.label(text="The addon try to automatically locate ptvsd, if no path is found, or you would like to use another one, set it here.")
       row_path.prop(self, "path")
 
       row_timeout = layout.split()
@@ -93,8 +95,7 @@ class DebuggerPreferences(bpy.types.AddonPreferences):
 
       row_port = layout.split()
       row_port.prop(self, "port")
-      row_port.label(text="Port to use. Should match port in VS Code's launch.json.")
-
+      row_port.label(text="Port on which to listen.")
 
 # check if debugger has attached
 def check_done(i, modal_limit, prefs):
@@ -143,11 +144,10 @@ class DebuggerCheck(bpy.types.Operator):
 
 class DebugServerStart(bpy.types.Operator):
    bl_idname = "debug.connect_debugger_vscode"
-   bl_label = "Debug: Start Debug Server for VS Code"
-   bl_description = "Starts ptvsd server for debugger to attach to"
+   bl_label = "Debug: Start Debug Server for Visual Studio"
+   bl_description = "Starts ptvsd server for debugger to attach"
 
    def execute(self, context):
-      #get ptvsd and import if exists
       prefs = bpy.context.preferences.addons[__name__].preferences
       ptvsd_path = prefs.path.rstrip("/")
       ptvsd_port = prefs.port
@@ -164,14 +164,14 @@ class DebugServerStart(bpy.types.Operator):
       if not any(ptvsd_path in p for p in sys.path):
          sys.path.append(ptvsd_path)
 
-      global ptvsd #so we can do check later
+      global ptvsd 
       import ptvsd
 
       try:
          # ptvsd.enable_attach() to start the debug server. The default hostname is 0.0.0.0, and the default port is 5678;
          ptvsd.enable_attach(("0.0.0.0", ptvsd_port), redirect_output=True)
       except:
-         print("Server already running.")
+         print("Debug server is already running.")
 
       # call our confirmation listener
       bpy.ops.debug.check_for_debugger()
